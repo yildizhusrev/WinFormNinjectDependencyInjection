@@ -13,40 +13,19 @@ using WinFormNinjectDepInjection.CrossCuttingConcern.BaseObjects;
 
 namespace WinFormNinjectDepInjection
 {
-    public partial class MainForm : BaseForm
+    public partial class Form1 : BaseForm
     {
         private IMainController _controller;
-
-        public MainForm()
+        public Form1()
         {
             InitializeComponent();
-            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
-                return; 
-            //The controller cannot be fetched at design time because the
-            //program has not loaded the kernel. 
-
-            init();
-        }
-
-        private void init()
-        {
             _controller = GetController<IMainController>();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(_controller.GetMessage());  
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Form1 frm = new Form1();
-            frm.ShowDialog();
+            MessageBox.Show(_controller.GetMessage());
+           
         }
     }
-
-
-
-  
-   
 }
